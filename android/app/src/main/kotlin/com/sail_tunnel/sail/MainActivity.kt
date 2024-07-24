@@ -5,6 +5,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.net.VpnService
 import android.os.Bundle
+import android.util.Log
 import com.sail_tunnel.sail.services.VpnState
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
@@ -62,10 +63,14 @@ class MainActivity: FlutterActivity() {
 
                 result.success(config)
             } else if (call.method == "setTunnelConfiguration") {
-                val context = Core.deviceStorage
-                val configRoot = context.noBackupFilesDir
-
-                File(configRoot, VpnState.CONFIG_FILE).writeText(call.arguments as String)
+                try {
+                    val context = Core.deviceStorage
+                    val configRoot = context.noBackupFilesDir
+                    Log.i("setTunnelConfiguration", call.arguments.toString());
+                    File(configRoot, VpnState.CONFIG_FILE).writeText(call.arguments.toString())
+                }catch (e: Exception ){
+                    println("setTunnelConfiguration FILE NullPointerException")
+                }
             } else if (call.method == "update") {
                 //
             } else {

@@ -48,7 +48,7 @@ class TunnelInstance() {
 
         Os.setenv("SOCKET_PROTECT_PATH", protectPath, true)
 
-        println(protectPath)
+        println("protectPath: $protectPath")
 
         thread (start = true) {
             val localSocket = LocalSocket()
