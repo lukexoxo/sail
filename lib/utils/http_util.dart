@@ -40,8 +40,9 @@ class HttpUtil {
 
       return handler.next(options);
     }, onResponse: (response, handler) {
-      print("========================请求数据===================");
+      print("========================响应数据===================");
       print("code=${response.statusCode}");
+      print("data=${response.data}");
 
       if (response.statusCode! < 200 || response.statusCode! >= 300) {
         if (response.statusCode == 403) {

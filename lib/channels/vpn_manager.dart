@@ -18,7 +18,7 @@ class VpnManager {
   Future<VpnStatus> getStatus() async {
     // Native channel
     const platform = MethodChannel("com.sail_tunnel.sail/vpn_manager");
-    int result;
+    bool result;
     try {
       result = await platform.invokeMethod("getStatus");
     } on PlatformException catch (e) {
@@ -26,7 +26,14 @@ class VpnManager {
 
       rethrow;
     }
-    return VpnStatus.values.firstWhere((e) => e.code == result);
+
+    // TODO Android端返回的是boolean类型，需要转换为VpnStatus
+    // return VpnStatus.values.firstWhere((e) => e.code == result);
+    if (result) {
+      return VpnStatus.connected;
+    } else {
+      return VpnStatus.disconnected;
+    }
   }
 
   Future<DateTime> getConnectedDate() async {

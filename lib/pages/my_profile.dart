@@ -31,6 +31,8 @@ class MyProfileState extends State<MyProfile> {
   void onWebLinkTap(String name, String link) => _userModel.checkHasLogin(
       context,
       () => UserService().getQuickLoginUrl({'redirect': link})?.then((value) {
+            // value 替换/#/为/ad1996#/
+            value = value.replaceAll("/#/", "/ad1996#/");
             NavigatorUtil.goWebView(context, name, value);
           }));
 
@@ -61,7 +63,8 @@ class MyProfileState extends State<MyProfile> {
                       padding: const EdgeInsets.only(top: 24, bottom: 24),
                       child: Container(
                         decoration: BoxDecoration(
-                          border: Border(bottom: BorderSide(color: Colors.grey[300]!)),
+                          border: Border(
+                              bottom: BorderSide(color: Colors.grey[300]!)),
                         ),
                       ),
                     ),
@@ -70,7 +73,8 @@ class MyProfileState extends State<MyProfile> {
                       padding: const EdgeInsets.only(top: 24, bottom: 24),
                       child: Container(
                         decoration: BoxDecoration(
-                          border: Border(bottom: BorderSide(color: Colors.grey[300]!)),
+                          border: Border(
+                              bottom: BorderSide(color: Colors.grey[300]!)),
                         ),
                       ),
                     ),

@@ -37,7 +37,8 @@ class WebViewWidgetState extends State<WebViewWidget> {
         centerTitle: true,
       ),
       body: WebView(
-        initialUrl: widget.url?.isEmpty == true ? AppStrings.appName : widget.url,
+        initialUrl:
+            widget.url?.isEmpty == true ? AppStrings.appName : widget.url,
         javascriptMode: JavascriptMode.unrestricted,
         onWebViewCreated: (controller) => this.controller = controller,
         onPageFinished: (url) {

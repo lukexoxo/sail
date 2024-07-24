@@ -21,7 +21,8 @@ class HomeWidget extends StatefulWidget {
   HomeWidgetState createState() => HomeWidgetState();
 }
 
-class HomeWidgetState extends State<HomeWidget> with AutomaticKeepAliveClientMixin {
+class HomeWidgetState extends State<HomeWidget>
+    with AutomaticKeepAliveClientMixin {
   late AppModel _appModel;
   late UserModel _userModel;
   late UserSubscribeModel _userSubscribeModel;
@@ -62,50 +63,56 @@ class HomeWidgetState extends State<HomeWidget> with AutomaticKeepAliveClientMix
     super.build(context);
 
     return SingleChildScrollView(
-        controller: _controller,
-        physics: const BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            // Logo bar
-            Padding(
-              padding: EdgeInsets.only(left: ScreenUtil().setWidth(75), right: ScreenUtil().setWidth(75)),
-              child: LogoBar(
-                isOn: _appModel.isOn,
-              ),
+      controller: _controller,
+      physics: const BouncingScrollPhysics(),
+      child: Column(
+        children: [
+          // Logo bar
+          Padding(
+            padding: EdgeInsets.only(
+                left: ScreenUtil().setWidth(75),
+                right: ScreenUtil().setWidth(75)),
+            child: LogoBar(
+              isOn: _appModel.isOn,
             ),
+          ),
 
-            Padding(
-              padding: EdgeInsets.only(top: ScreenUtil().setWidth(30)),
-              child: MySubscribe(
-                isLogin: _userModel.isLogin,
-                isOn: _appModel.isOn,
-                userSubscribeEntity: _userSubscribeModel.userSubscribeEntity,
-              ),
+          Padding(
+            padding: EdgeInsets.only(top: ScreenUtil().setWidth(30)),
+            child: MySubscribe(
+              isLogin: _userModel.isLogin,
+              isOn: _appModel.isOn,
+              userSubscribeEntity: _userSubscribeModel.userSubscribeEntity,
             ),
+          ),
 
-            Padding(
-              padding: EdgeInsets.only(top: ScreenUtil().setWidth(30)),
-              child: PlanList(
-                isOn: _appModel.isOn,
-                userSubscribeEntity: _userSubscribeModel.userSubscribeEntity,
-                plans: _planModel.planEntityList,
-              ),
+          Padding(
+            padding: EdgeInsets.only(top: ScreenUtil().setWidth(30)),
+            child: PlanList(
+              isOn: _appModel.isOn,
+              userSubscribeEntity: _userSubscribeModel.userSubscribeEntity,
+              plans: _planModel.planEntityList,
             ),
+          ),
 
-            Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: ScreenUtil().setWidth(75), vertical: ScreenUtil().setWidth(30)),
-                child: Stack(alignment: Alignment.center, children: [
-                  Image.asset(
-                    "assets/map.png",
-                    scale: 3,
-                    color: _appModel.isOn ? const Color(0x15000000) : AppColors.darkSurfaceColor,
-                  ),
-                ])),
+          Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: ScreenUtil().setWidth(75),
+                  vertical: ScreenUtil().setWidth(30)),
+              child: Stack(alignment: Alignment.center, children: [
+                Image.asset(
+                  "assets/map.png",
+                  scale: 3,
+                  color: _appModel.isOn
+                      ? const Color(0x15000000)
+                      : AppColors.darkSurfaceColor,
+                ),
+              ])),
 
-            _appModel.isOn ? const ConnectionStats() : const SelectLocation(),
-            const BottomBlock(),
-          ],
-        ));
+          _appModel.isOn ? const ConnectionStats() : const SelectLocation(),
+          const BottomBlock(),
+        ],
+      ),
+    );
   }
 }

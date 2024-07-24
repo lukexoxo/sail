@@ -3,8 +3,8 @@ import 'package:sail/models/page_state.dart';
 import 'package:sail/utils/common_util.dart';
 
 class BaseModel extends ChangeNotifier {
-  PageState pageState = PageState.loading;
-  bool _isDispose = false;
+  PageState pageState = PageState.loading; // 页面状态
+  bool _isDispose = false; // 是否已经销毁
   late String errorMessage;
 
   bool get isDispose => _isDispose;

@@ -2,7 +2,6 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' as services;
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:sail/constant/app_colors.dart';
 import 'package:sail/constant/app_strings.dart';
 import 'package:provider/provider.dart';
 import 'package:sail/models/app_model.dart';
@@ -13,7 +12,6 @@ import 'package:sail/router/application.dart';
 import 'package:sail/router/routers.dart';
 import 'package:sail/models/user_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,8 +44,10 @@ class SailApp extends StatelessWidget {
   Widget build(BuildContext context) {
     AppModel appModel = Provider.of<AppModel>(context);
 
-    services.SystemChrome.setPreferredOrientations(
-        [services.DeviceOrientation.portraitUp, services.DeviceOrientation.portraitDown]);
+    services.SystemChrome.setPreferredOrientations([
+      services.DeviceOrientation.portraitUp,
+      services.DeviceOrientation.portraitDown
+    ]);
 
     return MaterialApp(
       // <--- /!\ Add the builder

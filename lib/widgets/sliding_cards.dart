@@ -9,6 +9,7 @@ import 'package:sail/service/plan_service.dart';
 import 'package:sail/service/user_service.dart';
 import 'package:sail/utils/navigator_util.dart';
 
+// 订阅卡片
 class SlidingCardsView extends StatefulWidget {
   const SlidingCardsView({Key? key}) : super(key: key);
 
@@ -221,6 +222,8 @@ class CardContentState extends State<CardContent> {
                       () => UserService().getQuickLoginUrl({
                             'redirect': "/plan/${widget.id}"
                           })?.then((value) {
+                            // value 替换/#/为/ad1996#/
+                            value = value.replaceAll("/#/", "/ad1996#/");
                             NavigatorUtil.goWebView(context, "配置订阅", value);
                           })),
                   child: Transform.translate(

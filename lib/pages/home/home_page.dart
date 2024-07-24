@@ -62,6 +62,8 @@ class HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
+    // WidgetsBindingObserver
+    // 监听App生命周期状态发生变化
     print('state = $state');
 
     if (state == AppLifecycleState.resumed) {
@@ -95,70 +97,82 @@ class HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context, designSize: const Size(AppDimens.maxWidth, AppDimens.maxHeight));
+    ScreenUtil.init(context,
+        designSize: const Size(AppDimens.maxWidth, AppDimens.maxHeight));
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
-        value: _appModel.isOn ? SystemUiOverlayStyle.dark : SystemUiOverlayStyle.light,
-        child: Scaffold(
-            appBar: SailAppBar(
-              appTitle: _appModel.appTitle,
-            ),
-            extendBody: true,
-            backgroundColor: _appModel.isOn ? AppColors.yellowColor : AppColors.grayColor,
-            body: SafeArea(
-                bottom: false,
-                child: PageView(
-                  physics: const NeverScrollableScrollPhysics(),
-                  controller: _appModel.pageController,
-                  children: const [HomeWidget(), PlanPage(), ServerListPage(), MyProfile()],
-                )),
-            floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-            floatingActionButton: const PowerButton(),
-            bottomNavigationBar: ClipRRect(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(ScreenUtil().setWidth(50)),
-                    topRight: Radius.circular(ScreenUtil().setWidth(50))),
-                child: BottomAppBar(
-                  notchMargin: 8,
-                  shape: const CircularNotchedRectangle(),
-                  color: _appModel.isOn ? AppColors.grayColor : AppColors.themeColor,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: <Widget>[
-                      IconButton(
-                        icon: const Icon(
-                          Icons.home_rounded,
-                          color: Colors.white,
-                        ),
-                        onPressed: () => _appModel.jumpToPage(0),
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.wallet,
-                          color: Colors.white,
-                        ),
-                        onPressed: () => _appModel.jumpToPage(1),
-                      ),
-                      SizedBox(
-                        width: ScreenUtil().setWidth(50),
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.cloud_rounded,
-                          color: Colors.white,
-                        ),
-                        onPressed: () => _appModel.jumpToPage(2),
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.person,
-                          color: Colors.white,
-                        ),
-                        onPressed: () => _appModel.jumpToPage(3),
-                      )
-                    ],
+      value: _appModel.isOn
+          ? SystemUiOverlayStyle.dark
+          : SystemUiOverlayStyle.light,
+      child: Scaffold(
+        appBar: SailAppBar(
+          appTitle: _appModel.appTitle,
+        ),
+        extendBody: true,
+        backgroundColor:
+            _appModel.isOn ? AppColors.yellowColor : AppColors.grayColor,
+        body: SafeArea(
+            bottom: false,
+            child: PageView(
+              physics: const NeverScrollableScrollPhysics(),
+              controller: _appModel.pageController,
+              children: const [
+                HomeWidget(),
+                PlanPage(),
+                ServerListPage(),
+                MyProfile()
+              ],
+            )),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: const PowerButton(),
+        bottomNavigationBar: ClipRRect(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(ScreenUtil().setWidth(50)),
+              topRight: Radius.circular(ScreenUtil().setWidth(50))),
+          child: BottomAppBar(
+            notchMargin: 8,
+            shape: const CircularNotchedRectangle(),
+            color: _appModel.isOn ? AppColors.grayColor : AppColors.themeColor,
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                IconButton(
+                  icon: const Icon(
+                    Icons.home_rounded,
+                    color: Colors.white,
                   ),
-                ))));
+                  onPressed: () => _appModel.jumpToPage(0),
+                ),
+                IconButton(
+                  icon: const Icon(
+                    Icons.wallet,
+                    color: Colors.white,
+                  ),
+                  onPressed: () => _appModel.jumpToPage(1),
+                ),
+                SizedBox(
+                  width: ScreenUtil().setWidth(50),
+                ),
+                IconButton(
+                  icon: const Icon(
+                    Icons.cloud_rounded,
+                    color: Colors.white,
+                  ),
+                  onPressed: () => _appModel.jumpToPage(2),
+                ),
+                IconButton(
+                  icon: const Icon(
+                    Icons.person,
+                    color: Colors.white,
+                  ),
+                  onPressed: () => _appModel.jumpToPage(3),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

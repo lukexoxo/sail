@@ -16,7 +16,7 @@ class AppModel extends BaseModel {
   DateTime? connectedDate;
   PageController pageController = PageController(initialPage: 0);
   String appTitle = AppStrings.appName;
-  Config config = Config();
+  Config config = Config(); // leaf配置
   ThemeData themeData = ThemeData(
     primarySwatch: AppColors.themeColor,
     visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -61,7 +61,9 @@ class AppModel extends BaseModel {
   }
 
   void getStatus() async {
+    // TODO
     vpnStatus = await vpnManager.getStatus();
+    // vpnStatus = VpnStatus.disconnected;
 
     if (vpnStatus == VpnStatus.connected) {
       isOn = true;

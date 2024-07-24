@@ -30,12 +30,14 @@ class SelectLocationState extends State<SelectLocation> {
     _serverModel = Provider.of<ServerModel>(context);
 
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 20, horizontal: ScreenUtil().setWidth(75)),
+      padding: EdgeInsets.symmetric(
+          vertical: 20, horizontal: ScreenUtil().setWidth(75)),
       child: Material(
         borderRadius: BorderRadius.circular(20),
         color: Colors.yellow[600],
         child: InkWell(
-          onTap: () => _userModel.checkHasLogin(context, () => NavigatorUtil.goServerList(context)),
+          onTap: () => _userModel.checkHasLogin(
+              context, () => NavigatorUtil.goServerList(context)),
           splashColor: Colors.grey,
           borderRadius: BorderRadius.circular(20),
           child: Container(
@@ -54,10 +56,12 @@ class SelectLocationState extends State<SelectLocation> {
             child: Row(
               children: [
                 const Icon(Icons.sailing),
-                Padding(padding: EdgeInsets.only(left: ScreenUtil().setWidth(10))),
+                Padding(
+                    padding: EdgeInsets.only(left: ScreenUtil().setWidth(10))),
                 Text(
                   _serverModel.selectServerEntity?.name ?? "选择连接节点",
-                  style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                      fontSize: 15, fontWeight: FontWeight.bold),
                 ),
                 Expanded(child: Container()),
                 const Icon(Icons.chevron_right)
